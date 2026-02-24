@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS 6 Mobile</title>
+    <style>
+        /* Iconic Linen Texture */
+        body {
+            background-color: #2d2d2d;
+            background-image: radial-gradient(#444 1px, transparent 1px);
+            background-size: 4px 4px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent; /* Removes blue box on mobile tap */
+        }
+
+        /* Responsive Header */
+        header {
+            background: linear-gradient(to bottom, #b2bbca 0%, #8391ab 50%, #6d7e9c 51%, #6d7e9c 100%);
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #2d3037;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 18px;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+            margin: 0;
+        }
+
+        /* The Main Container - Becomes a column on mobile */
+        .container {
+            display: flex;
+            flex-direction: row;
+            padding: 15px;
+            gap: 15px;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            aside {
+                width: 100% !important;
+            }
+        }
+
+        /* Sidebar / Navigation List */
+        aside {
+            width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.5);
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside li {
+            padding: 12px 15px;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+
+        aside li:active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        aside li.active {
+            background: linear-gradient(to bottom, #058cf5 0%, #015de6 100%);
+        }
+
+        /* Content Boxes */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .content-box {
+            background: #fdfdfd;
+            border: 1px solid #ababab;
+            border-radius: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .box-header {
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+            padding: 8px 12px;
+            font-weight: bold;
+            color: #4c566c;
+            font-size: 14px;
+            border-bottom: 1px solid #ababab;
+        }
+
+        .box-body {
+            padding: 12px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /* THE SHINY SKEUOMORPHIC BUTTON */
+        .btn-action {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 50%, #cecece 51%, #b8b8b8 100%);
+            border: 1px solid #707070;
+            border-radius: 6px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 1px 0 #fff;
+            cursor: pointer;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 0 white;
+            transition: transform 0.05s;
+        }
+
+        /* Pressed State */
+        .btn-action:active {
+            transform: scale(0.98);
+            background: linear-gradient(to bottom, #b8b8b8 0%, #cecece 100%);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Shiny Sweep Animation */
+        .btn-action::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(30deg);
+            transition: none;
+        }
+
+        .btn-action:hover::after {
+            left: 120%;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Footer - Mobile Tab Bar */
+        footer {
+            height: 55px;
+            background: linear-gradient(to bottom, #3c3c3c 0%, #1a1a1a 50%, #000000 51%, #000000 100%);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #000;
+            position: sticky;
+            bottom: 0;
+        }
+
+        .tab-item {
+            color: #999;
+            font-size: 10px;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .tab-item.active {
+            color: #2d9aff;
+            text-shadow: 0 0 10px rgba(45, 154, 255, 0.5);
+        }
+
+        .tab-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Settings</h1>
+</header>
+
+<div class="container">
+    <aside id="sidebar">
+        <ul>
+            <li class="active" onclick="selectTab(this)">Wi-Fi</li>
+            <li onclick="selectTab(this)">Bluetooth</li>
+            <li onclick="selectTab(this)">Do Not Disturb</li>
+            <li onclick="selectTab(this)">Notifications</li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="content-box">
+            <div class="box-header">Software Update</div>
+            <div class="box-body">
+                iOS 6.1.6 is available.
+                <button class="btn-action" onclick="alert('Checking for updates...')">Install Now</button>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="box-header">Battery Usage</div>
+            <div class="box-body">
+                Your battery is currently at 84%.
+                <button class="btn-action" onclick="alert('Low Power Mode wasn\'t a thing yet!')">View Details</button>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="box-header">Developer Info</div>
+            <div class="box-body">
+                Running in Mobile Web View.
+                <button class="btn-action" onclick="location.reload()">Reset Device</button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <a href="#" class="tab-item active"><span class="tab-icon">⚙️</span>Settings</a>
+    <a href="#" class="tab-item"><span class="tab-icon">📞</span>Phone</a>
+    <a href="#" class="tab-item"><span class="tab-icon">✉️</span>Mail</a>
+    <a href="#" class="tab-item"><span class="tab-icon">🌐</span>Safari</a>
+</footer>
+
+<script>
+    // Simple logic to make the sidebar items interactive
+    function selectTab(element) {
+        document.querySelectorAll('aside li').forEach(li => li.classList.remove('active'));
+        element.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
